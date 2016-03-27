@@ -17,12 +17,18 @@ This formula works both locally with vagrant instances and in the cloud with Dig
 - VirtualBox
 - Vagrant
 
-## Install Local
+## Install Local (Vagrant)
 
 - `git clone https://github.com/rudijs/saltstack-elk-formula.git`
 - `cd saltstack-elk-formula`
 - `vagrant up`
 - `vagrant ssh master`
+- Open a browser to the Kibana UI
+- [http://192.168.50.11:5601](http://192.168.50.11:5601)
+- Send some test log entries...
+- `vagrant ssh minion1`
+- `echo 101 >> /tmp/test.log`
+- Message "101" should appear in Kibana (refresh or use auto-refresh).
 
 ## Install Cloud (Digital Ocean)
 
