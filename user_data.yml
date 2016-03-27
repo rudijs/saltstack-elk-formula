@@ -1,0 +1,11 @@
+#cloud-config
+
+output : { all : '| tee -a /var/log/cloud-init-output.log' }
+
+package_upgrade: true
+
+packages:
+ - ntp
+
+power_state:
+ mode: reboot
