@@ -6,7 +6,7 @@ DevOps SaltStack Formual for ELK Unified Logging Stack - Elasticsearch, Logstash
 
 This Saltstack formula is a work in progress.
 
-It will install and single instances of the ELK stack onto a single machine.
+It will install single instances of the ELK stack software onto a single machine.
 
 This machine will listen and receive logs over the wire from FileBeat (Elastic Beats).
 
