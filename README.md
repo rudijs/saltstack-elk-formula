@@ -36,6 +36,16 @@ Install Filebeat on to every node.
 
 Filebeat will send logs over the wire to the ELK stack.
 
+TODO: Expand pillar system to handle which logs to send from what type of machine roles.
+
+Currently logs being sent to ELK are:
+
+```
+/var/log/*.log
+/var/log/upstart/*.log
+/var/log/syslog
+```
+
 ## TODO
 
 This formula is currenlty configured for a *single instance* of each ELK stack component.
@@ -56,6 +66,7 @@ For larger volumes of traffic/data, the formula will need to add in support for 
 - `vagrant ssh master`
 - From the *master* install the ELK stack on *minion1* and Filebeat (log shipper) on both *minion1* and *minion2*
 - `sudo salt '*' state.highstate`
+- TODO: Repeat this command if the formula fails. Sometimes apt-get installs fail.
 - All done, now open a browser to the Kibana UI
 - [http://192.168.50.11:5601](http://192.168.50.11:5601)
 - Filebeat agent log data should already in ready for viewing
