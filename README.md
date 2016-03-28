@@ -6,11 +6,41 @@ DevOps SaltStack Formual for ELK Unified Logging Stack - Elasticsearch, Logstash
 
 This Saltstack formula is a work in progress.
 
-It will install single instances of the ELK stack software onto a single machine.
+The default behavior is a 3 machine setup for 2 stages:
+
+1. Master (salt-master)
+2. Minion1 (salt-minion, Filebeat, ELK stack)
+3. Minion2 (salt-minion, Filebeat)
+
+The stages are:
+
+1. Local - Vagrant with Virtualbox
+2. Cloud - Terraform and ssh
+
+Within each of these stages are the defined Saltstack enviroments.
+
+## ELK Stack
+
+The ELK stack on Minion1 will comprise:
+
+- Elasticsearch
+- Logstash
+- Kibana
 
 This machine will listen and receive logs over the wire from FileBeat (Elastic Beats).
+Kibana web UI admin tool is also served from here.
 
-This formula works both locally with vagrant instances and in the cloud with Digital Ocean.
+## Log Shippers
+
+Install Filebeat on to every node.
+
+Filebeat will send logs over the wire to the ELK stack.
+
+## TODO
+
+This formula is currenlty configured for a *single instance* of each ELK stack component.
+
+For larger volumes of traffic/data, the formula will need to add in support for clustering.
 
 ## Requirements
 
@@ -28,7 +58,8 @@ This formula works both locally with vagrant instances and in the cloud with Dig
 - `sudo salt '*' state.highstate`
 - All done, now open a browser to the Kibana UI
 - [http://192.168.50.11:5601](http://192.168.50.11:5601)
-- Send some test log entries...
+- Filebeat agent log data should already in ready for viewing
+- Send some manual test log entries...
 - `vagrant ssh minion1`
 - `echo 101 >> /tmp/test.log`
 - Message "101" should appear in Kibana (refresh or use auto-refresh).
@@ -39,3 +70,4 @@ This formula works both locally with vagrant instances and in the cloud with Dig
 - Update the ssh keys linked to your account
 - `terraform apply`
 - ssh to the new digital ocean droplet
+- TODO
