@@ -8,6 +8,9 @@ kibana_install:
     - user: logstash
     - group: logstash
     - if_missing: {{ salt['pillar.get']('elk:kibana:dir') }}
+    - require:
+      - sls: elk.elasticsearch
+      - sls: elk.logstash
 
 kibana_symlink:
   file.symlink:

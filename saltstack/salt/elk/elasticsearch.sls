@@ -8,6 +8,8 @@ elasticsearch_apt_source:
 elasticsearch_install:
   pkg.installed:
     - name: elasticsearch
+    - require:
+      - sls: elk.common
   service.running:
     - name: elasticsearch
     - enable: True

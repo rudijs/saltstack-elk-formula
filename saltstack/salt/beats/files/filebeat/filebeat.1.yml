@@ -1,0 +1,15 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "/tmp/test.log"
+
+output:
+  # elasticsearch:
+    #  hosts: ["192.168.55.11:9200"]
+  logstash:
+    hosts: ["192.168.55.11:5044"]
+
+shipper:
+  name: app-server
+  tags: ["service-X", "web-tier"]

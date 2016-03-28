@@ -8,6 +8,8 @@ logstash_apt_source:
 logstash_install:
   pkg.installed:
     - name: logstash
+    - require:
+      - sls: elk.common
   service.running:
     - name: logstash
     - enable: True
