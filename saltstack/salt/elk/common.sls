@@ -2,6 +2,7 @@ openjdk_install:
   pkg.installed:
     - name: openjdk-7-jre
     - refresh: True
+    - failhard: True
 
 elastic_public_key:
 

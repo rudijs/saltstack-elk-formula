@@ -11,6 +11,7 @@ kibana_install:
     - require:
       - sls: elk.elasticsearch
       - sls: elk.logstash
+    - failhard: True
 
 kibana_symlink:
   file.symlink:

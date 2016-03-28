@@ -10,6 +10,7 @@ logstash_install:
     - name: logstash
     - require:
       - sls: elk.common
+    - failhard: True
   service.running:
     - name: logstash
     - enable: True
@@ -22,8 +23,12 @@ logstash_conf.d input:
   file.managed:
     - name: /etc/logstash/conf.d/input.conf
     - source: salt://elk/files/logstash/input.conf
+    - require:
+      - pkg: logstash
 
 logstash_conf.d output:
   file.managed:
     - name: /etc/logstash/conf.d/output.conf
     - source: salt://elk/files/logstash/output.conf
+    - require:
+      - pkg: logstash

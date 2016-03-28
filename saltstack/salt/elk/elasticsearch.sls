@@ -10,6 +10,7 @@ elasticsearch_install:
     - name: elasticsearch
     - require:
       - sls: elk.common
+    - failhard: True
   service.running:
     - name: elasticsearch
     - enable: True
