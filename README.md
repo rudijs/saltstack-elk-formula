@@ -22,8 +22,11 @@ This formula works both locally with vagrant instances and in the cloud with Dig
 - `git clone https://github.com/rudijs/saltstack-elk-formula.git`
 - `cd saltstack-elk-formula`
 - `vagrant up`
+- After some time all three servers will be up with Saltstack installed.
 - `vagrant ssh master`
-- Open a browser to the Kibana UI
+- From the *master* install the ELK stack on *minion1* and Filebeat (log shipper) on both *minion1* and *minion2*
+- `sudo salt '*' state.highstate`
+- All done, now open a browser to the Kibana UI
 - [http://192.168.50.11:5601](http://192.168.50.11:5601)
 - Send some test log entries...
 - `vagrant ssh minion1`
