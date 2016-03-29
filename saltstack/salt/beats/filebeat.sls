@@ -45,10 +45,19 @@ filebeat_symlink:
     - target: {{ salt['pillar.get']('elk:filebeat:dir') }}
     - force: True
 
+{% set nodename_paths = 'filebeat:nodes:' + salt['grains.get']('nodename') + ':paths' %}
+# Ex: filebeat:nodes:saltminion1:paths
+
 filebeat_conf:
   file.managed:
     - name: {{ salt['pillar.get']('elk:filebeat:dir') }}/filebeat.yml
     - source: salt://beats/files/filebeat/filebeat.yml
+    - template: jinja
+    - paths: {{ salt['pillar.get']('filebeat:paths') }}
+    - custom_paths_nodename: {{ nodename_paths }}
+    {% if salt['pillar.get'](nodename_paths) is defined %}
+    - paths_node: {{ salt['pillar.get'](nodename_paths) }}
+    {% endif %}
 
 filebeat_init:
   file.managed:

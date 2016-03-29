@@ -12,11 +12,17 @@ filebeat:
       # For each file found under this path, a harvester is started.
       # Make sure not file is defined twice as this can lead to unexpected behaviour.
       paths:
-        - /var/log/*.log
-        - /var/log/upstart/*.log
-        - /var/log/syslog
+        # - /var/log/*.log
+        # - /var/log/upstart/*.log
+        # - /var/log/syslog
         #- c:\programdata\elasticsearch\logs\*
 
+        # Paths for every node
+{% for path in paths %}        - {{ path }}
+{% endfor %}
+        # Paths for this node only: {{ custom_paths_nodename }} (pillar data)
+{% for path in paths_node %}        - {{ path }}
+{% endfor %}
       # Configure the file encoding for reading files with international characters
       # following the W3C recommendation for HTML5 (http://www.w3.org/TR/encoding).
       # Some sample encodings:
