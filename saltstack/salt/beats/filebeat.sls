@@ -53,6 +53,7 @@ filebeat_conf:
     - name: {{ salt['pillar.get']('elk:filebeat:dir') }}/filebeat.yml
     - source: salt://beats/files/filebeat/filebeat.yml
     - template: jinja
+    - logstash_hosts: {{ ','.join(salt['pillar.get']('filebeat:logstash:hosts')) }}
     - paths: {{ salt['pillar.get']('filebeat:paths') }}
     - custom_paths_nodename: {{ nodename_paths }}
     {% if salt['pillar.get'](nodename_paths) is defined %}

@@ -262,7 +262,8 @@ output:
   ### Logstash as output
   logstash:
     # The Logstash hosts
-    hosts: ["192.168.50.11:5044"]
+    # hosts: ["localhost:5044"]
+    hosts: ["{{ logstash_hosts }}"]
 
     # Number of workers per Logstash host.
     #worker: 1

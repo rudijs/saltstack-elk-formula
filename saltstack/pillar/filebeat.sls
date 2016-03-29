@@ -1,7 +1,7 @@
 filebeat:
 
+  # The Logstash hosts
   logstash:
-      # The Logstash hosts
       hosts:
         - 192.168.50.11:5044
 
