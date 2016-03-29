@@ -36,15 +36,17 @@ Install Filebeat on to every node.
 
 Filebeat will send logs over the wire to the ELK stack.
 
-TODO: Expand pillar system to handle which logs to send from what type of machine roles.
-
-Currently logs being sent to ELK are:
+Default logs being shipped from host to ELK stack are:
 
 ```
 /var/log/*.log
 /var/log/upstart/*.log
 /var/log/syslog
 ```
+
+Add hosts/log-shippers in [saltstack/salt/top.sls](saltstack/salt/top.sls)
+
+Configure custom host logs to ship in [saltstack/pillar/filebeat.sls](saltstack/pillar/filebeat.sls)
 
 ## TODO
 
