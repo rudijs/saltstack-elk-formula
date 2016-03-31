@@ -11,10 +11,21 @@ elasticsearch_install:
     - require:
       - sls: elk.common
     - failhard: True
+
+elasticsearch_service:
   service.running:
     - name: elasticsearch
     - enable: True
-#    - watch:
-#      - file: elastic_conf
     - require:
       - pkg: elasticsearch
+
+#Currently using all default settings.
+#elasticsearch_config:
+#  file.managed:
+#    - name: /etc/elasticsearch/elasticsearch.yml
+#    - source: salt://elk/files/elasticsearch/elasticsearch.yml.conf
+#    - context:
+#      cluster_hosts: salt.dwsutils.get_elastic_cluster_hosts()|join(",")
+#    - template: jinja
+#    - watch_in:
+#      - service: elasticsearch_service
