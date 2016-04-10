@@ -8,6 +8,7 @@ elasticsearch_apt_source:
 elasticsearch_install:
   pkg.installed:
     - name: elasticsearch
+    - refresh: True
     - require:
       - sls: elk.common
     - failhard: True

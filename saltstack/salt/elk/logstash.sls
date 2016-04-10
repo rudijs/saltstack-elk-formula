@@ -8,6 +8,7 @@ logstash_apt_source:
 logstash_install:
   pkg.installed:
     - name: logstash
+    - refresh: True
     - require:
       - sls: elk.common
     - failhard: True
