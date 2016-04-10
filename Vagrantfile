@@ -7,7 +7,6 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :master do |master_config|
     master_config.vm.box = "ubuntu/trusty64"
-    #master_config.vm.box = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
     master_config.vm.host_name = 'saltmaster.local'
     master_config.vm.network "private_network", ip: "192.168.50.10"
     master_config.vm.synced_folder "saltstack/salt/", "/srv/salt"
